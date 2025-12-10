@@ -68,9 +68,6 @@ router.get('/beolvasas', async (request, response) => {
     response.status(200).json({
         numbers: nums
     });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
-    });
 });
 
 router.get('/osszeg', async (request, response) => {
@@ -82,9 +79,6 @@ router.get('/osszeg', async (request, response) => {
     response.status(200).json({
         sum: sum
     });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
-    });
 });
 
 router.get('/szorzat', async (request, response) => {
@@ -93,9 +87,6 @@ router.get('/szorzat', async (request, response) => {
 
     response.status(200).json({
         product: product
-    });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
     });
 });
 
@@ -107,9 +98,6 @@ router.get('/atlag', async (request, response) => {
     }
     response.status(200).json({
         avg: sum / nums.length
-    });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
     });
 });
 router.get('/min', async (request, response) => {
@@ -123,9 +111,6 @@ router.get('/min', async (request, response) => {
     response.status(200).json({
         min: min
     });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
-    });
 });
 router.get('/max', async (request, response) => {
     let nums = (await readTextFile('files/szamok.txt')).split(',');
@@ -138,13 +123,10 @@ router.get('/max', async (request, response) => {
     response.status(200).json({
         max: max
     });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
-    });
 });
 router.get('/rendezett', async (request, response) => {
     let nums = (await readTextFile('files/szamok.txt')).split(',');
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = 0; i < nums.length - 1; i++) {
         for (let j = i + 1; j < nums.length; j++) {
             if (parseInt(nums[i]) > parseInt(nums[j])) {
                 let temp = nums[i];
@@ -155,9 +137,6 @@ router.get('/rendezett', async (request, response) => {
     }
     response.status(200).json({
         nums: nums
-    });
-    response.status(500).json({
-        message: 'Ezt nagyon elbaltáztad!'
     });
 });
 module.exports = router;
