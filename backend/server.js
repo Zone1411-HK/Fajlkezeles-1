@@ -2,6 +2,7 @@
 const express = require('express'); //?npm install express
 const session = require('express-session'); //?npm install express-session
 const path = require('path');
+const fs = require('fs');
 
 //!Beállítások
 const app = express();
@@ -27,6 +28,20 @@ app.use(
 router.get('/', (request, response) => {
     response.sendFile(path.join(__dirname, '../frontend/html/index.html'));
 });
+router.get('/elso', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/elso.html'));
+});
+router.get('/masodik', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/masodik.html'));
+});
+
+//! ------------------------------------------------------- !//
+
+let nums = [];
+for (let i = 0; i < 20; i++) {
+    nums.push(Math.floor(Math.random() * (50 - 1 + 1) + 1));
+}
+fs.writeFileSync('files/szamok.txt', nums.join(','), 'utf8');
 
 //!API endpoints
 app.use('/', router);
