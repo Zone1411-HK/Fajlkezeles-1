@@ -139,4 +139,42 @@ router.get('/rendezett', async (request, response) => {
         nums: nums
     });
 });
+
+//? 3. Feladat
+
+const readJsonFile = async (filePath) => {
+    try {
+        const raw = await fs.readFile(filePath, 'utf8');
+        return JSON.parse(raw);
+    } catch (error) {
+        throw new Error(`Olvasási hiba (json): ${error.message}`);
+    }
+};
+
+router.get('/getallstat', async (request, response) => {
+    let stats = await readJsonFile('files/statisztika.json');
+    response.status(200).json({
+        result: stats
+    });
+});
+router.get('/getallstat/:telepaz', async (request, response) => {
+    let telepaz = request.params.telepaz;
+    let stats = await readJsonFile('files/statisztika.json');
+    let j = 0;
+    while (j < stats.telepules.length && stats.telepules[j].telepaz != telepaz) {
+        j++;
+    }
+
+    if (j < stats.telepules.length) {
+        response.status(200).json({
+            errorMsg: '',
+            result: stats.telepules[j]
+        });
+    } else {
+        response.status(200).json({
+            errorMsg: 'Nem található ilyen település azonosító',
+            result: ''
+        });
+    }
+});
 module.exports = router;

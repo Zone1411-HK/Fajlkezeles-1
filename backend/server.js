@@ -34,6 +34,9 @@ router.get('/elso', (request, response) => {
 router.get('/masodik', (request, response) => {
     response.sendFile(path.join(__dirname, '../frontend/html/masodik.html'));
 });
+router.get('/harmadik', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/harmadik.html'));
+});
 
 //! ------------------------------------------------------- !//
 
