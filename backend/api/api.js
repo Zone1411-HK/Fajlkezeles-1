@@ -161,6 +161,7 @@ router.get('/getallstat/:telepaz', async (request, response) => {
     let telepaz = request.params.telepaz;
     let stats = await readJsonFile('files/statisztika.json');
     let j = 0;
+
     while (j < stats.telepules.length && stats.telepules[j].telepaz != telepaz) {
         j++;
     }
@@ -177,4 +178,7 @@ router.get('/getallstat/:telepaz', async (request, response) => {
         });
     }
 });
+
+//? 4. Feladat
+
 module.exports = router;
