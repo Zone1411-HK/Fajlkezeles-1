@@ -40,3 +40,6 @@ GET http://127.0.0.1:3000/api/barlangok
 ###
 
 GET http://127.0.0.1:3000/api/barlangok/1
+###
+
+GET http://127.0.0.1:3000/api/stat

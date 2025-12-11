@@ -16,10 +16,19 @@
         <script src="../javascript/negyedik.js"></script>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row text-center">
                 <h1 class="display-4 shadow-sm text-start">4. Feladat</h1>
-                <h1 class="display-6 text-center" id="eredmeny"></h1>
+                <label for="select" class="form-label">Válasszon barlangot</label>
+                <select id="select" class="form-control text-center w-25 mx-auto"></select>
+                <p class="display-4" id="barlangNev"></p>
+                <ul id="barlangStat"></ul>
+                <hr />
+                <input
+                    type="button"
+                    value="Kvíz kezdése"
+                    class="btn btn-outline-primary w-75 d-block mx-auto"
+                />
             </div>
         </div>
     </body>

@@ -208,9 +208,24 @@ router.get('/stat', async (request, response) => {
     let legmelyebbIndex = 0;
     let fokozottDb = 0;
     barlangok = Object.values(barlangok);
-    console.log(barlangok);
-    for (let barlang of barlangok) {
+    for (let i = 1; i < barlangok.length; i++) {
+        if (barlangok[i].hossz < barlangok[leghosszabbIndex].hossz) {
+            leghosszabbIndex = i;
+        }
+        if (barlangok[i].melyseg < barlangok[legmelyebbIndex].melyseg) {
+            legmelyebbIndex = i;
+        }
+        console.log(barlangok[i].vedettseg);
+        if (barlangok[i].vedettseg == 'fokozottan védett') {
+            fokozottDb++;
+        }
     }
+    response.status(200).json({
+        hossz: barlangok[leghosszabbIndex].hossz,
+        melyseg: barlangok[legmelyebbIndex].melyseg,
+        fokozottDb: fokozottDb,
+        barlangDb: barlangok.length
+    });
 });
 
 module.exports = router;
