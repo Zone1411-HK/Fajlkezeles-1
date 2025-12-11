@@ -32,3 +32,11 @@ GET http://127.0.0.1:3000/api/rendezett
 ###
 
 GET http://127.0.0.1:3000/api/getallstat/33367
+
+###
+
+GET http://127.0.0.1:3000/api/barlangok
+
+###
+
+GET http://127.0.0.1:3000/api/barlangok/1

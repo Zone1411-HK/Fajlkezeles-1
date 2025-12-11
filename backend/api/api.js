@@ -181,4 +181,36 @@ router.get('/getallstat/:telepaz', async (request, response) => {
 
 //? 4. Feladat
 
+router.get('/barlangok', async (request, response) => {
+    let barlangok = await readJsonFile('files/barlangok.json');
+    response.status(200).json({
+        result: barlangok
+    });
+});
+
+router.get('/barlangok/:azon', async (request, response) => {
+    let azon = request.params.azon;
+    let resultArr = [];
+    let barlangok = await readJsonFile('files/barlangok.json');
+    for (let element of barlangok) {
+        if (element.azon == azon) {
+            resultArr.push(element);
+        }
+    }
+    response.status(200).json({
+        result: resultArr
+    });
+});
+
+router.get('/stat', async (request, response) => {
+    let barlangok = await readJsonFile('files/barlangok.json');
+    let leghosszabbIndex = 0;
+    let legmelyebbIndex = 0;
+    let fokozottDb = 0;
+    barlangok = Object.values(barlangok);
+    console.log(barlangok);
+    for (let barlang of barlangok) {
+    }
+});
+
 module.exports = router;
