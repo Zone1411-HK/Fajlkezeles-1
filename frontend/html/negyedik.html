@@ -17,9 +17,9 @@
     </head>
     <body>
         <div class="container">
-            <div class="row text-center">
+            <div class="row">
                 <h1 class="display-4 shadow-sm text-start">4. Feladat</h1>
-                <label for="select" class="form-label">Válasszon barlangot</label>
+                <label for="select" class="form-label text-center">Válasszon barlangot</label>
                 <select id="select" class="form-control text-center w-25 mx-auto"></select>
                 <p class="display-4" id="barlangNev"></p>
                 <ul id="barlangStat"></ul>
@@ -28,7 +28,17 @@
                     type="button"
                     value="Kvíz kezdése"
                     class="btn btn-outline-primary w-75 d-block mx-auto"
+                    id="quizQuestion"
                 />
+                <label for="quizAnswer" id="quizTitle" class="form-label my-2 text-center"></label>
+                <input type="text" id="quizAnswer" class="form-control w-75 d-block mx-auto" />
+                <input
+                    type="button"
+                    value="Ellenőrzés"
+                    id="checkAnswer"
+                    class="btn w-75 btn-outline-success my-2 mx-auto"
+                />
+                <p id="feedback" class="asd"></p>
             </div>
         </div>
     </body>
