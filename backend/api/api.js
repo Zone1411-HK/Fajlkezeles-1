@@ -228,4 +228,27 @@ router.get('/stat', async (request, response) => {
     });
 });
 
+//? 5. Feladat
+
+router.get('/getallelem', async (request, response) => {
+    let elemek = await readJsonFile('files/elemek.json');
+    elemek = elemek.felfedez;
+    response.status(200).json({
+        elemek: elemek
+    });
+});
+
+router.get('/ismeretlen', async (request, response) => {
+    let elemek = await readJsonFile('files/elemek.json');
+    elemek = elemek.felfedez;
+    let ismeretlen = [];
+    elemek.forEach((elem) => {
+        if (elem.felfedezve == 0) {
+            ismeretlen.push(elem);
+        }
+    });
+    response.status(200).json({
+        elemek: ismeretlen
+    });
+});
 module.exports = router;
