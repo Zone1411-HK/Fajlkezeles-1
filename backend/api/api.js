@@ -277,5 +277,150 @@ router.get('/getelem/:elemneve', async (request, response) => {
 
 router.get('/fovaros', async (request, response) => {
     let orszagok = await readJsonFile('files/orszagok.json');
+    orszagok = orszagok.orszagok;
+    let j = 0;
+    while (j < orszagok.length && orszagok[j].orszag !== 'MADAGASZKÁR') {
+        j++;
+    }
+    if (j < orszagok.length) {
+        response.status(200).json({
+            fovaros: orszagok[j].fovaros
+        });
+    } else {
+        response.status(200).json({
+            idunno: 'Vmiért nincs madagaszkár'
+        });
+    }
+});
+
+router.get('/OUAGADOUGOU', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    orszagok = orszagok.orszagok;
+    let j = 0;
+    while (j < orszagok.length && orszagok[j].fovaros !== 'OUAGADOUGOU') {
+        j++;
+    }
+    if (j < orszagok.length) {
+        response.status(200).json({
+            orszag: orszagok[j].orszag
+        });
+    } else {
+        response.status(200).json({
+            idunno: 'Vmiért nincs OUAGADOUGOU'
+        });
+    }
+});
+router.get('/tt', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    orszagok = orszagok.orszagok;
+    let j = 0;
+    while (j < orszagok.length && orszagok[j].autojel !== 'TT') {
+        j++;
+    }
+    if (j < orszagok.length) {
+        response.status(200).json({
+            orszag: orszagok[j].orszag
+        });
+    } else {
+        response.status(200).json({
+            idunno: 'Vmiért nincs tt'
+        });
+    }
+});
+router.get('/sgd', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    orszagok = orszagok.orszagok;
+    let j = 0;
+    while (j < orszagok.length && orszagok[j].penzjel !== 'SGD') {
+        j++;
+    }
+    if (j < orszagok.length) {
+        response.status(200).json({
+            orszag: orszagok[j].orszag
+        });
+    } else {
+        response.status(200).json({
+            idunno: 'Vmiért nincs SGD'
+        });
+    }
+});
+router.get('/malta', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    orszagok = orszagok.orszagok;
+    let j = 0;
+    while (j < orszagok.length && orszagok[j].orszag !== 'MÁLTA') {
+        j++;
+    }
+    if (j < orszagok.length) {
+        response.status(200).json({
+            lakossag: orszagok[j].nepesseg * 1000
+        });
+    } else {
+        response.status(200).json({
+            idunno: 'Vmiért nincs Málta'
+        });
+    }
+});
+router.get('/japan', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    orszagok = orszagok.orszagok;
+    let j = 0;
+    while (j < orszagok.length && orszagok[j].orszag !== 'JAPÁN') {
+        j++;
+    }
+    if (j < orszagok.length) {
+        response.status(200).json({
+            nepsuruseg: (orszagok[j].nepesseg * 1000) / orszagok[j].terulet
+        });
+    } else {
+        response.status(200).json({
+            idunno: 'Vmiért nincs Japán'
+        });
+    }
+});
+
+router.get('/fold', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    let enby = 0;
+    orszagok = orszagok.orszagok;
+    orszagok.forEach((orszag) => {
+        enby += orszag.nepesseg * 1000;
+    });
+    response.status(200).json({
+        lakossag: enby
+    });
+});
+router.get('/osszTer', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    let oszty = 0;
+    orszagok = orszagok.orszagok;
+    orszagok.forEach((orszag) => {
+        oszty += orszag.terulet;
+    });
+    response.status(200).json({
+        terulet: oszty
+    });
+});
+router.get('/atlagNep', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    let enby = 0;
+    orszagok = orszagok.orszagok;
+    orszagok.forEach((orszag) => {
+        enby += orszag.nepesseg * 1000;
+    });
+    response.status(200).json({
+        lakossag: enby / orszagok.length
+    });
+});
+router.get('/atlagTer', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+    let oszty = 0;
+    orszagok = orszagok.orszagok;
+    orszagok.forEach((orszag) => {
+        oszty += orszag.terulet;
+    });
+    response.status(200).json({
+        terulet: oszty / orszagok.length
+    });
 });
 module.exports = router;

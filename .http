@@ -52,3 +52,33 @@ GET http://127.0.0.1:3000/api/ismeretlen
 ###
 
 GET http://127.0.0.1:3000/api/getelem/hidrogén
+###
+
+GET http://127.0.0.1:3000/api/fovaros
+###
+
+GET http://127.0.0.1:3000/api/OUAGADOUGOU
+###
+
+GET http://127.0.0.1:3000/api/tt
+###
+
+GET http://127.0.0.1:3000/api/sgd
+###
+
+GET http://127.0.0.1:3000/api/malta
+###
+
+GET http://127.0.0.1:3000/api/japan
+###
+
+GET http://127.0.0.1:3000/api/fold
+###
+
+GET http://127.0.0.1:3000/api/osszTer
+###
+
+GET http://127.0.0.1:3000/api/atlagNep
+###
+
+GET http://127.0.0.1:3000/api/atlagTer
