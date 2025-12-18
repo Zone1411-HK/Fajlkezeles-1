@@ -6,7 +6,6 @@ const fs = require('fs/promises');
 //!Multer
 const multer = require('multer'); //?npm install multer
 const path = require('path');
-const { request } = require('http');
 const { read } = require('fs');
 
 const storage = multer.diskStorage({
@@ -250,5 +249,27 @@ router.get('/ismeretlen', async (request, response) => {
     response.status(200).json({
         elemek: ismeretlen
     });
+});
+
+router.get('/getelem/:elemneve', async (request, response) => {
+    let elemek = await readJsonFile('files/elemek.json');
+    elemek = elemek.felfedez;
+    const elemneve = request.params.elemneve;
+    let j = 0;
+    while (j < elemek.length && elemek[j].elemneve != elemneve) {
+        j++;
+    }
+
+    if (j < elemek.length) {
+        response.status(200).json({
+            elem: elemek[j],
+            status: true
+        });
+    } else {
+        response.status(200).json({
+            elem: 'Nincs ilyen elem',
+            status: false
+        });
+    }
 });
 module.exports = router;

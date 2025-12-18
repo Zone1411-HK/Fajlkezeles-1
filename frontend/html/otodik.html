@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Főoldal</title>
+        <!--!Bootstrap-->
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+        <!--?Popper: dropdowns, popovers, tooltips-->
+        <script src="../bootstrap/js/popper.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <!--!CSS-->
+        <link rel="stylesheet" href="../css/index.css" />
+        <!--!JavaScript-->
+        <script src="../javascript/fetch.js"></script>
+        <script src="../javascript/otodik.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1 class="display-4 shadow-sm text-start">5. Feladat</h1>
+                <div class="d-flex gap-3 my-2">
+                    <label class="form-label w-25" for="elemText">Adja meg az elem nevét: </label>
+                    <input class="form-control w-50" type="text" id="elemText" />
+                    <input
+                        class="btn btn-outline-info w-25"
+                        type="button"
+                        value="Lekérdezés"
+                        id="elemKereses"
+                    />
+                </div>
+
+                <table class="table table-striped table-bordered">
+                    <thead id="keresettHead"></thead>
+                    <tbody id="keresettBody"></tbody>
+                </table>
+
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rendszám</th>
+                            <th scope="col">Vegyjel</th>
+                            <th scope="col">Elemneve</th>
+                            <th scope="col">Felfedezve</th>
+                            <th scope="col">Gáz</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ismeretlenElemek"></tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

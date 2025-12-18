@@ -49,3 +49,6 @@ GET http://127.0.0.1:3000/api/getallelem
 ###
 
 GET http://127.0.0.1:3000/api/ismeretlen
+###
+
+GET http://127.0.0.1:3000/api/getelem/hidrogén

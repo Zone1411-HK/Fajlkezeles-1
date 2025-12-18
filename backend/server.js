@@ -40,6 +40,9 @@ router.get('/harmadik', (request, response) => {
 router.get('/negyedik', (request, response) => {
     response.sendFile(path.join(__dirname, '../frontend/html/negyedik.html'));
 });
+router.get('/otodik', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/otodik.html'));
+});
 
 //! ------------------------------------------------------- !//
 
