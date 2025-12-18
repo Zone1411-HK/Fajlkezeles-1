@@ -272,4 +272,10 @@ router.get('/getelem/:elemneve', async (request, response) => {
         });
     }
 });
+
+//? 6. Feladat
+
+router.get('/fovaros', async (request, response) => {
+    let orszagok = await readJsonFile('files/orszagok.json');
+});
 module.exports = router;
