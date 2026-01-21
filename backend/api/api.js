@@ -6,7 +6,6 @@ const fs = require('fs/promises');
 //!Multer
 const multer = require('multer'); //?npm install multer
 const path = require('path');
-const { read } = require('fs');
 
 const storage = multer.diskStorage({
     destination: (request, file, callback) => {
@@ -421,6 +420,57 @@ router.get('/atlagTer', async (request, response) => {
     });
     response.status(200).json({
         terulet: oszty / orszagok.length
+    });
+});
+
+//? Hetedik
+
+router.get('/getVizsgazok', async (request, response) => {
+    response.status(200).json({
+        vizsgazok: await readJsonFile('files/erettsegi.json')
+    });
+});
+
+router.get('/getOsztalyzatok', async (request, response) => {
+    let adatok = await readJsonFile('files/erettsegi.json');
+    let vizsgazok = [];
+    for (const adat of adatok) {
+        let irasbeli = adat.Szovegszerkesztes + adat.Adatbaziskezeles + adat.Programozas;
+
+        let egeszSzazalek = ((irasbeli + adat.Szobeli) / 150) * 100;
+        let osztalyzat;
+        if (egeszSzazalek < 25) {
+            osztalyzat = 1;
+        }
+        if (egeszSzazalek < 33 && egeszSzazalek > 25) {
+            osztalyzat = 2;
+        }
+        if (egeszSzazalek < 47 && egeszSzazalek > 33) {
+            osztalyzat = 3;
+        }
+        if (egeszSzazalek < 60 && egeszSzazalek > 47) {
+            osztalyzat = 4;
+        }
+        if (egeszSzazalek > 60) {
+            osztalyzat = 5;
+        }
+        let eredmenyes = false;
+        if ((adat.Szobeli / 30) * 100 >= 12 && (irasbeli / 120) * 100 >= 12) {
+            eredmenyes = true;
+        }
+        const diakEredmeny = {
+            Nev: adat.Nev,
+            Osszpont: irasbeli + adat.Szobeli,
+            Irasbeli_Szazalek: Math.round((irasbeli / 120) * 100),
+            Szobeli_Szazalek: Math.round((adat.Szobeli / 30) * 100),
+            Osztalyzat: osztalyzat,
+            Eredmenyes: eredmenyes
+        };
+        vizsgazok.push(diakEredmeny);
+    }
+    response.status(200).json({
+        Status: 'Success',
+        Result: vizsgazok
     });
 });
 module.exports = router;

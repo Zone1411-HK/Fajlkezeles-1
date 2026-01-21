@@ -46,6 +46,9 @@ router.get('/otodik', (request, response) => {
 router.get('/hatodik', (request, response) => {
     response.sendFile(path.join(__dirname, '../frontend/html/hatodik.html'));
 });
+router.get('/hetedik', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/hetedik.html'));
+});
 
 //! ------------------------------------------------------- !//
 
