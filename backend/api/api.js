@@ -424,7 +424,6 @@ router.get('/atlagTer', async (request, response) => {
 });
 
 //? Hetedik
-
 router.get('/getVizsgazok', async (request, response) => {
     response.status(200).json({
         vizsgazok: await readJsonFile('files/erettsegi.json')
@@ -472,5 +471,49 @@ router.get('/getOsztalyzatok', async (request, response) => {
         Status: 'Success',
         Result: vizsgazok
     });
+});
+
+//? Nyolcadik
+
+async function writeTxt(path, content) {
+    try {
+        await fs.appendFile(path, content + '\n', 'utf8');
+        return 'Sikeres fájl írás';
+    } catch (error) {
+        throw new Error(`Írási hiba (text): ${error.message}`);
+    }
+}
+async function writeJson(path, content) {
+    try {
+        await fs.appendFile(path, content + '\n', 'utf8');
+        return 'Sikeres fájl írás';
+    } catch (error) {
+        throw new Error(`Írási hiba (text): ${error.message}`);
+    }
+}
+
+router.post('/posttxt', async (request, response) => {
+    try {
+        const { vezetekNev, keresztNev, nem, szuletesiDatum, anyjaNeve, email, telefonszam } =
+            request.body;
+        let contentLine = `${vezetekNev};${keresztNev};${nem};${szuletesiDatum};${anyjaNeve};${email};${telefonszam}`;
+        writeTxt('files/', contentLine);
+    } catch (error) {
+        console.log('Error: ', error);
+        response.status(500).json({
+            error: 'Internal server error'
+        });
+    }
+});
+router.post('/postjson', async (request, response) => {
+    try {
+        const { vezetekNev, keresztNev, nem, szuletesiDatum, anyjaNeve, email, telefonszam } =
+            request.body;
+    } catch (error) {
+        console.log('Error: ', error);
+        response.status(500).json({
+            error: 'Internal server error'
+        });
+    }
 });
 module.exports = router;
