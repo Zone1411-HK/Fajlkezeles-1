@@ -485,10 +485,35 @@ async function writeTxt(path, content) {
 }
 async function writeJson(path, content) {
     try {
-        await fs.appendFile(path, content + '\n', 'utf8');
-        return 'Sikeres fájl írás';
+        try {
+            await fs.access(path);
+            console.log('itt');
+            let raw = JSON.parse(await fs.readFile(path));
+            let temp = [];
+            if (Array.isArray(raw)) {
+                for (const r of raw) {
+                    temp.push(r);
+                }
+                temp.push(content);
+            } else {
+                temp.push(raw);
+                temp.push(content);
+            }
+            console.log(temp);
+
+            await fs.writeFile(path, JSON.stringify(temp, null, 2), 'utf-8');
+
+            return true;
+        } catch (error) {
+            console.log(error);
+            const data = [];
+            data.push(JSON.stringify(content, null, 2));
+            await fs.writeFile(path, data, 'utf-8');
+            return true;
+        }
     } catch (error) {
-        throw new Error(`Írási hiba (text): ${error.message}`);
+        console.log(error);
+        return false;
     }
 }
 
@@ -497,7 +522,7 @@ router.post('/posttxt', async (request, response) => {
         const { vezetekNev, keresztNev, nem, szuletesiDatum, anyjaNeve, email, telefonszam } =
             request.body;
         let contentLine = `${vezetekNev};${keresztNev};${nem};${szuletesiDatum};${anyjaNeve};${email};${telefonszam}`;
-        writeTxt('files/', contentLine);
+        writeTxt('files/reg.txt', contentLine);
     } catch (error) {
         console.log('Error: ', error);
         response.status(500).json({
@@ -507,8 +532,19 @@ router.post('/posttxt', async (request, response) => {
 });
 router.post('/postjson', async (request, response) => {
     try {
-        const { vezetekNev, keresztNev, nem, szuletesiDatum, anyjaNeve, email, telefonszam } =
-            request.body;
+        const data = request.body;
+        let success = await writeJson('files/reg.json', data);
+        console.log(success);
+
+        if (success) {
+            response.status(200).json({
+                success: success
+            });
+        } else {
+            response.status(500).json({
+                success: success
+            });
+        }
     } catch (error) {
         console.log('Error: ', error);
         response.status(500).json({
