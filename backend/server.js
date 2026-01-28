@@ -49,7 +49,9 @@ router.get('/hatodik', (request, response) => {
 router.get('/hetedik', (request, response) => {
     response.sendFile(path.join(__dirname, '../frontend/html/hetedik.html'));
 });
-
+router.get('/nyolcadik', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/nyolcadik.html'));
+});
 //! ------------------------------------------------------- !//
 
 let nums = [];
