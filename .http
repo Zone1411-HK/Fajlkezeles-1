@@ -88,3 +88,6 @@ GET http://127.0.0.1:3000/api/getVizsgazok
 ###
 
 GET http://127.0.0.1:3000/api/getOsztalyzatok
+###
+
+GET http://127.0.0.1:3000/api/employeesData

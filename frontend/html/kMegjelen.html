@@ -13,14 +13,25 @@
         <link rel="stylesheet" href="../css/index.css" />
         <!--!JavaScript-->
         <script src="../javascript/fetch.js"></script>
-        <script src="../javascript/kilencedik.js"></script>
+        <script src="../javascript/megjelenites.js"></script>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row text-center">
-                <h1 class="display-4 shadow-sm text-start">9. Feladat</h1>
-                <a href="../html/kFeltolt.html" class="display-6">Adatok feltöltése</a>
-                <a href="../html/kMegjelen.html" class="display-6">Adatok megjelenítése</a>
+                <a href="../html/kFeltolt.html" class="display-4 shadow-sm text-dark"
+                    >Adatok feltöltése</a
+                >
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Név</th>
+                            <th scope="col">Pozíció</th>
+                            <th scope="col">Születési dátum</th>
+                            <th scope="col">Fizetés</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
             </div>
         </div>
     </body>

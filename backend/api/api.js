@@ -552,4 +552,41 @@ router.post('/postjson', async (request, response) => {
         });
     }
 });
+
+router.post('/employeesAdd', async (request, response) => {
+    try {
+        const data = request.body;
+        let success = await writeJson('files/employees.json', data);
+        if (success) {
+            response.status(200).json({
+                success: success
+            });
+        } else {
+            response.status(200).json({
+                success: success
+            });
+        }
+    } catch (error) {
+        response.status(500).json({
+            success: false
+        });
+    }
+});
+router.get('/employeesData', async (request, response) => {
+    try {
+        await fs.access('files/employees.json');
+
+        let data = await fs.readFile('files/employees.json', 'utf-8');
+        data = JSON.parse(data);
+        response.status(200).json({
+            success: true,
+            result: data
+        });
+    } catch (error) {
+        response.status(200).json({
+            success: false,
+            result: 'There is no data!'
+        });
+    }
+});
 module.exports = router;
