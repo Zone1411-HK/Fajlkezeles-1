@@ -3,16 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function getData() {
-    console.log('asd');
     const data = document.getElementsByTagName('input');
     const nem = document.getElementById('nem').value;
-    let nemValid = nem == null ? false : true;
     let j = 0;
-    while (j < data.length && data[j].value != null) {
+    while (j < data.length && data[j].value != '') {
         j++;
     }
 
-    if (j == data.length && nemValid) {
+    if (j == data.length) {
         const obj = {
             vezetekNev: data[0].value,
             keresztNev: data[1].value,
@@ -27,7 +25,7 @@ async function getData() {
         console.log(r1);
         console.log(r2);
     } else {
-        console.error('Hiba');
+        alert('HIBA');
     }
 }
 
